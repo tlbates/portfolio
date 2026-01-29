@@ -1,0 +1,22 @@
+<header class="app-header">
+  <nav class="nav">
+    <a
+      routerLink="/"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >
+      Home
+    </a>
+
+    <a
+      routerLink="/signal-forms-playground"
+      routerLinkActive="active"
+    >
+      Signal Forms Playground
+    </a>
+  </nav>
+</header>
+
+<main>
+  <router-outlet />
+</main>
