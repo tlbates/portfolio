@@ -4,8 +4,6 @@ import { Component } from '@angular/core';
   selector: 'app-signal-forms',
   imports: [],
   templateUrl: './signal-forms.html',
-  styleUrl: './signal-forms.scss',
+  styleUrl: './signal-forms.scss'
 })
-export class SignalForms {
-
-}
+export class SignalForms {}

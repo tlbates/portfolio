@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { Home} from './home/home';
+import { Home } from './home/home';
 import { SignalForms } from './signal-forms/signal-forms';
 
 export const routes: Routes = [
