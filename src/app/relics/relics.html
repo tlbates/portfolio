@@ -1,0 +1,61 @@
+<div class="relics-container">
+  <aside class="sidebar">
+    <div class="sidebar-item" [class.active]="selectedComponent() === 'button'" (click)="selectComponent('button')">Button</div>
+    <div class="sidebar-item" [class.active]="selectedComponent() === 'input'" (click)="selectComponent('input')">Input</div>
+    <div class="sidebar-item" [class.active]="selectedComponent() === 'toggle'" (click)="selectComponent('toggle')">Toggle</div>
+  </aside>
+
+  <main class="content">
+    @if (selectedComponent() === 'button') {
+      <div class="component-section">
+        <h2>Button Component</h2>
+
+        <div class="variant-group">
+          <relic-button (click)="buttonClicked()">Default</relic-button>
+          <relic-button variant="primary" (click)="buttonClicked()">Primary</relic-button>
+        </div>
+
+        <div class="variant-group">
+          <relic-button size="sm">Small</relic-button>
+          <relic-button size="md">Medium</relic-button>
+          <relic-button size="lg">Large</relic-button>
+        </div>
+
+        <div class="variant-group">
+          <relic-button disabled>Disabled</relic-button>
+          <relic-button type="submit" variant="primary">Submit</relic-button>
+        </div>
+      </div>
+    }
+
+    @if (selectedComponent() === 'input') {
+      <div class="component-section">
+        <h2>Input Component</h2>
+
+        <div class="variant-group">
+          <relic-input placeholder="Enter username"></relic-input>
+          <relic-input type="email" placeholder="email@example.com"></relic-input>
+          <relic-input type="password" placeholder="Password"></relic-input>
+        </div>
+
+        <div class="variant-group">
+          <relic-input type="number" min="0" max="100" step="5"></relic-input>
+          <relic-input disabled placeholder="Disabled"></relic-input>
+          <relic-input readonly value="Read only"></relic-input>
+        </div>
+      </div>
+    }
+
+    @if (selectedComponent() === 'toggle') {
+      <div class="component-section">
+        <h2>Toggle Component</h2>
+
+        <div class="variant-group">
+          <relic-toggle aria-label="Basic toggle"></relic-toggle>
+          <relic-toggle checked aria-label="Checked toggle"></relic-toggle>
+          <relic-toggle disabled aria-label="Disabled toggle"></relic-toggle>
+        </div>
+      </div>
+    }
+  </main>
+</div>

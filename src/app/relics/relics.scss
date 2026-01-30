@@ -1,0 +1,48 @@
+.relics-container {
+  display: flex;
+  gap: 2rem;
+  padding: 2rem;
+}
+
+.sidebar {
+  width: 200px;
+  flex-shrink: 0;
+}
+
+.sidebar-item {
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+  border-radius: var(--relic-radius-md);
+  color: var(--relic-muted);
+  transition: all 0.15s ease;
+}
+
+.sidebar-item:hover {
+  background: var(--relic-surface-2);
+  color: var(--relic-fg);
+}
+
+.sidebar-item.active {
+  background: var(--relic-accent);
+  color: var(--relic-on-accent);
+}
+
+.content {
+  flex: 1;
+}
+
+.component-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.variant-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 1rem;
+  background: var(--relic-surface);
+  border: 1px solid var(--relic-border);
+  border-radius: var(--relic-radius-md);
+}
