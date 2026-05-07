@@ -1,16 +1,4 @@
-<header class="app-header">
-  <div class="header-content">
-    <nav class="nav">
-      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"> Home </a>
-
-      <a routerLink="/signal-forms-playground" routerLinkActive="active"> Signal Forms Playground </a>
-
-      <a routerLink="/relics" routerLinkActive="active"> Relics </a>
-    </nav>
-
-    <relic-toggle (change)="onToggle($event)" aria-label="Toggle dark mode"> </relic-toggle>
-  </div>
-</header>
+<app-header />
 
 <main>
   <router-outlet />

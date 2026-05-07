@@ -1,0 +1,18 @@
+<header class="app-header">
+  <div class="header-content">
+    <nav class="nav">
+      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a>
+      <a routerLink="/signal-forms-playground" routerLinkActive="active">Signal Forms Playground</a>
+      <a routerLink="/relics" routerLinkActive="active">Relics</a>
+    </nav>
+
+    <label class="theme-toggle">
+      <relic-toggle
+        [attr.checked]="theme.isDark() || null"
+        (change)="onToggle($event)"
+        aria-label="Toggle light mode"
+      ></relic-toggle>
+      <span>{{ theme.isDark() ? 'Dark mode' : 'Light mode' }}</span>
+    </label>
+  </div>
+</header>

@@ -1,34 +1,47 @@
 .relics-container {
   display: flex;
   gap: 2rem;
-  padding: 2rem;
 }
 
+// ---- Sidebar ----
 .sidebar {
-  width: 200px;
+  width: 180px;
   flex-shrink: 0;
 }
 
+.sidebar-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--relic-muted);
+  margin: 0 0 0.5rem 0.75rem;
+}
+
 .sidebar-item {
-  padding: 0.75rem 1rem;
+  padding: 0.6rem 0.75rem;
   cursor: pointer;
   border-radius: var(--relic-radius-md);
   color: var(--relic-muted);
+  font-size: 0.9rem;
   transition: all 0.15s ease;
+
+  &:hover {
+    background: var(--relic-surface-2);
+    color: var(--relic-fg);
+  }
+
+  &.active {
+    background: var(--relic-accent);
+    color: var(--relic-on-accent);
+    font-weight: 500;
+  }
 }
 
-.sidebar-item:hover {
-  background: var(--relic-surface-2);
-  color: var(--relic-fg);
-}
-
-.sidebar-item.active {
-  background: var(--relic-accent);
-  color: var(--relic-on-accent);
-}
-
+// ---- Content ----
 .content {
   flex: 1;
+  min-width: 0;
 }
 
 .component-section {
@@ -37,12 +50,157 @@
   gap: 1.5rem;
 }
 
-.variant-group {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  padding: 1rem;
-  background: var(--relic-surface);
+.component-header {
+  h2 {
+    margin: 0 0 0.25rem;
+    font-size: 1.5rem;
+  }
+
+  .component-desc {
+    margin: 0;
+    color: var(--relic-muted);
+    font-size: 0.9rem;
+    line-height: 1.6;
+
+    code {
+      font-size: 0.85em;
+      background: var(--relic-surface-2);
+      padding: 0.1em 0.35em;
+      border-radius: 4px;
+    }
+  }
+}
+
+// ---- Demo blocks ----
+.demo-block {
   border: 1px solid var(--relic-border);
   border-radius: var(--relic-radius-md);
+  overflow: hidden;
+}
+
+.demo-label {
+  margin: 0;
+  padding: 0.5rem 1rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--relic-muted);
+  background: var(--relic-surface-2);
+  border-bottom: 1px solid var(--relic-border);
+}
+
+.demo-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1.25rem 1rem;
+  background: var(--relic-surface);
+
+  &--center {
+    align-items: center;
+  }
+}
+
+.demo-col {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1.25rem 1rem;
+  background: var(--relic-surface);
+}
+
+.demo-labeled {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.4rem;
+
+  span {
+    font-size: 0.75rem;
+    color: var(--relic-muted);
+  }
+}
+
+// ---- Code snippets ----
+.code-snippet {
+  margin: 0;
+  padding: 0.875rem 1rem;
+  background: var(--relic-surface-2);
+  border-top: 1px solid var(--relic-border);
+  overflow-x: auto;
+
+  code {
+    font-family: 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+    font-size: 0.8rem;
+    line-height: 1.6;
+    color: var(--relic-fg);
+    white-space: pre;
+  }
+}
+
+// ---- State badge ----
+.state-badge {
+  display: inline-block;
+  padding: 0.2rem 0.6rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  background: var(--relic-surface-2);
+  color: var(--relic-muted);
+  border: 1px solid var(--relic-border);
+  transition: all 0.15s ease;
+
+  &.on {
+    background: var(--relic-accent);
+    color: var(--relic-on-accent);
+    border-color: var(--relic-accent);
+  }
+}
+
+// ---- Props table ----
+.props-section {
+  h3 {
+    margin: 0 0 0.75rem;
+    font-size: 1rem;
+    font-weight: 600;
+  }
+}
+
+.props-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+
+  th {
+    text-align: left;
+    padding: 0.5rem 0.75rem;
+    background: var(--relic-surface-2);
+    border: 1px solid var(--relic-border);
+    font-weight: 600;
+    color: var(--relic-muted);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  td {
+    padding: 0.5rem 0.75rem;
+    border: 1px solid var(--relic-border);
+    vertical-align: top;
+    line-height: 1.5;
+
+    code {
+      font-family: 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+      font-size: 0.8em;
+      background: var(--relic-surface-2);
+      padding: 0.1em 0.35em;
+      border-radius: 4px;
+    }
+  }
+
+  tr:hover td {
+    background: var(--relic-surface-2);
+  }
 }

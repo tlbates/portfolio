@@ -1,59 +1,314 @@
 <div class="relics-container">
   <aside class="sidebar">
-    <div class="sidebar-item" [class.active]="selectedComponent() === 'button'" (click)="selectComponent('button')">Button</div>
-    <div class="sidebar-item" [class.active]="selectedComponent() === 'input'" (click)="selectComponent('input')">Input</div>
-    <div class="sidebar-item" [class.active]="selectedComponent() === 'toggle'" (click)="selectComponent('toggle')">Toggle</div>
+    <p class="sidebar-label">Components</p>
+    @for (
+      item of [
+        ['button', 'Button'],
+        ['input', 'Input'],
+        ['toggle', 'Toggle'],
+        ['select', 'Select']
+      ];
+      track item[0]
+    ) {
+      <div class="sidebar-item" [class.active]="selectedComponent() === item[0]" (click)="selectComponent(item[0])">
+        {{ item[1] }}
+      </div>
+    }
   </aside>
 
   <main class="content">
+    <!-- ===================== BUTTON ===================== -->
     @if (selectedComponent() === 'button') {
       <div class="component-section">
-        <h2>Button Component</h2>
-
-        <div class="variant-group">
-          <relic-button (click)="buttonClicked()">Default</relic-button>
-          <relic-button variant="primary" (click)="buttonClicked()">Primary</relic-button>
+        <div class="component-header">
+          <h2>Button</h2>
+          <p class="component-desc">A flexible button supporting variants, sizes, and full ARIA support for toggle and disclosure patterns.</p>
         </div>
 
-        <div class="variant-group">
-          <relic-button size="sm">Small</relic-button>
-          <relic-button size="md">Medium</relic-button>
-          <relic-button size="lg">Large</relic-button>
+        <div class="demo-block">
+          <p class="demo-label">Variants</p>
+          <div class="demo-row">
+            <relic-button>Default</relic-button>
+            <relic-button variant="primary">Primary</relic-button>
+          </div>
+          <pre class="code-snippet"><code>&lt;relic-button&gt;Default&lt;/relic-button&gt;
+&lt;relic-button variant="primary"&gt;Primary&lt;/relic-button&gt;</code></pre>
         </div>
 
-        <div class="variant-group">
-          <relic-button disabled>Disabled</relic-button>
-          <relic-button type="submit" variant="primary">Submit</relic-button>
+        <div class="demo-block">
+          <p class="demo-label">Sizes</p>
+          <div class="demo-row">
+            <relic-button size="sm">Small</relic-button>
+            <relic-button size="md">Medium</relic-button>
+            <relic-button size="lg">Large</relic-button>
+          </div>
+          <pre class="code-snippet"><code>&lt;relic-button size="sm"&gt;Small&lt;/relic-button&gt;
+&lt;relic-button size="md"&gt;Medium&lt;/relic-button&gt;
+&lt;relic-button size="lg"&gt;Large&lt;/relic-button&gt;</code></pre>
+        </div>
+
+        <div class="demo-block">
+          <p class="demo-label">States</p>
+          <div class="demo-row">
+            <relic-button disabled>Disabled</relic-button>
+            <relic-button variant="primary" disabled>Primary Disabled</relic-button>
+          </div>
+          <pre class="code-snippet"><code>&lt;relic-button disabled&gt;Disabled&lt;/relic-button&gt;</code></pre>
+        </div>
+
+        <div class="props-section">
+          <h3>Props</h3>
+          <table class="props-table">
+            <thead>
+              <tr>
+                <th>Prop</th>
+                <th>Type</th>
+                <th>Default</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (row of buttonProps; track row.name) {
+                <tr>
+                  <td>
+                    <code>{{ row.name }}</code>
+                  </td>
+                  <td>
+                    <code>{{ row.type }}</code>
+                  </td>
+                  <td>
+                    <code>{{ row.default }}</code>
+                  </td>
+                  <td>{{ row.description }}</td>
+                </tr>
+              }
+            </tbody>
+          </table>
         </div>
       </div>
     }
 
+    <!-- ===================== INPUT ===================== -->
     @if (selectedComponent() === 'input') {
       <div class="component-section">
-        <h2>Input Component</h2>
-
-        <div class="variant-group">
-          <relic-input placeholder="Enter username"></relic-input>
-          <relic-input type="email" placeholder="email@example.com"></relic-input>
-          <relic-input type="password" placeholder="Password"></relic-input>
+        <div class="component-header">
+          <h2>Input</h2>
+          <p class="component-desc">A text input supporting all native input types, constraints, and validation states.</p>
         </div>
 
-        <div class="variant-group">
-          <relic-input type="number" min="0" max="100" step="5"></relic-input>
-          <relic-input disabled placeholder="Disabled"></relic-input>
-          <relic-input readonly value="Read only"></relic-input>
+        <div class="demo-block">
+          <p class="demo-label">Types</p>
+          <div class="demo-col">
+            <relic-input placeholder="Text" (change)="onInputChange($event)"></relic-input>
+            <relic-input type="email" placeholder="email@example.com"></relic-input>
+            <relic-input type="password" placeholder="Password"></relic-input>
+            <relic-input type="number" placeholder="Number" min="0" max="100" step="5"></relic-input>
+          </div>
+          <pre class="code-snippet"><code>&lt;relic-input placeholder="Text"&gt;&lt;/relic-input&gt;
+&lt;relic-input type="email" placeholder="email@example.com"&gt;&lt;/relic-input&gt;
+&lt;relic-input type="password" placeholder="Password"&gt;&lt;/relic-input&gt;
+&lt;relic-input type="number" min="0" max="100" step="5"&gt;&lt;/relic-input&gt;</code></pre>
+        </div>
+
+        <div class="demo-block">
+          <p class="demo-label">States</p>
+          <div class="demo-col">
+            <relic-input disabled placeholder="Disabled"></relic-input>
+            <relic-input readonly value="Read only value"></relic-input>
+            <relic-input invalid placeholder="Invalid input" aria-invalid="true"></relic-input>
+          </div>
+          <pre class="code-snippet"><code>&lt;relic-input disabled placeholder="Disabled"&gt;&lt;/relic-input&gt;
+&lt;relic-input readonly value="Read only value"&gt;&lt;/relic-input&gt;
+&lt;relic-input invalid aria-invalid="true" placeholder="Invalid"&gt;&lt;/relic-input&gt;</code></pre>
+        </div>
+
+        <div class="props-section">
+          <h3>Props</h3>
+          <table class="props-table">
+            <thead>
+              <tr>
+                <th>Prop</th>
+                <th>Type</th>
+                <th>Default</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (row of inputProps; track row.name) {
+                <tr>
+                  <td>
+                    <code>{{ row.name }}</code>
+                  </td>
+                  <td>
+                    <code>{{ row.type }}</code>
+                  </td>
+                  <td>
+                    <code>{{ row.default }}</code>
+                  </td>
+                  <td>{{ row.description }}</td>
+                </tr>
+              }
+            </tbody>
+          </table>
         </div>
       </div>
     }
 
+    <!-- ===================== TOGGLE ===================== -->
     @if (selectedComponent() === 'toggle') {
       <div class="component-section">
-        <h2>Toggle Component</h2>
+        <div class="component-header">
+          <h2>Toggle</h2>
+          <p class="component-desc">
+            A switch control using <code>role="switch"</code>. Fires a <code>change</code> event with the new checked state accessible via
+            <code>event.target.checked</code>.
+          </p>
+        </div>
 
-        <div class="variant-group">
-          <relic-toggle aria-label="Basic toggle"></relic-toggle>
-          <relic-toggle checked aria-label="Checked toggle"></relic-toggle>
-          <relic-toggle disabled aria-label="Disabled toggle"></relic-toggle>
+        <div class="demo-block">
+          <p class="demo-label">Interactive</p>
+          <div class="demo-row demo-row--center">
+            <relic-toggle [attr.checked]="toggleChecked() || null" (change)="onToggleChange($event)" aria-label="Demo toggle"></relic-toggle>
+            <span class="state-badge" [class.on]="toggleChecked()">{{ toggleChecked() ? 'ON' : 'OFF' }}</span>
+          </div>
+          <pre class="code-snippet"><code>&lt;relic-toggle (change)="onToggle($event)" aria-label="Enable feature"&gt;&lt;/relic-toggle&gt;</code></pre>
+        </div>
+
+        <div class="demo-block">
+          <p class="demo-label">States</p>
+          <div class="demo-row">
+            <div class="demo-labeled">
+              <relic-toggle aria-label="Unchecked"></relic-toggle>
+              <span>Unchecked</span>
+            </div>
+            <div class="demo-labeled">
+              <relic-toggle checked aria-label="Checked"></relic-toggle>
+              <span>Checked</span>
+            </div>
+            <div class="demo-labeled">
+              <relic-toggle disabled aria-label="Disabled"></relic-toggle>
+              <span>Disabled</span>
+            </div>
+            <div class="demo-labeled">
+              <relic-toggle checked disabled aria-label="Checked disabled"></relic-toggle>
+              <span>Checked + Disabled</span>
+            </div>
+          </div>
+          <pre class="code-snippet"><code>&lt;relic-toggle&gt;&lt;/relic-toggle&gt;
+&lt;relic-toggle checked&gt;&lt;/relic-toggle&gt;
+&lt;relic-toggle disabled&gt;&lt;/relic-toggle&gt;</code></pre>
+        </div>
+
+        <div class="props-section">
+          <h3>Props</h3>
+          <table class="props-table">
+            <thead>
+              <tr>
+                <th>Prop</th>
+                <th>Type</th>
+                <th>Default</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (row of toggleProps; track row.name) {
+                <tr>
+                  <td>
+                    <code>{{ row.name }}</code>
+                  </td>
+                  <td>
+                    <code>{{ row.type }}</code>
+                  </td>
+                  <td>
+                    <code>{{ row.default }}</code>
+                  </td>
+                  <td>{{ row.description }}</td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      </div>
+    }
+
+    <!-- ===================== SELECT ===================== -->
+    @if (selectedComponent() === 'select') {
+      <div class="component-section">
+        <div class="component-header">
+          <h2>Select</h2>
+          <p class="component-desc">A styled native select. Slot in <code>&lt;option&gt;</code> elements directly. Fires a <code>change</code> event.</p>
+        </div>
+
+        <div class="demo-block">
+          <p class="demo-label">Interactive</p>
+          <div class="demo-col">
+            <relic-select (change)="onSelectChange($event)" aria-label="Demo select">
+              <option value="">Choose a framework</option>
+              <option value="angular">Angular</option>
+              <option value="react">React</option>
+              <option value="vue">Vue</option>
+              <option value="svelte">Svelte</option>
+            </relic-select>
+            @if (selectValue()) {
+              <span class="state-badge on">Selected: {{ selectValue() }}</span>
+            }
+          </div>
+          <pre class="code-snippet"><code>&lt;relic-select aria-label="Choose framework"&gt;
+  &lt;option value=""&gt;Choose a framework&lt;/option&gt;
+  &lt;option value="angular"&gt;Angular&lt;/option&gt;
+  &lt;option value="react"&gt;React&lt;/option&gt;
+&lt;/relic-select&gt;</code></pre>
+        </div>
+
+        <div class="demo-block">
+          <p class="demo-label">States</p>
+          <div class="demo-col">
+            <relic-select disabled aria-label="Disabled select">
+              <option>Disabled</option>
+            </relic-select>
+            <relic-select invalid aria-invalid="true" aria-label="Invalid select">
+              <option value="">Required field</option>
+              <option value="1">Option 1</option>
+            </relic-select>
+            <relic-select multiple aria-label="Multi-select">
+              <option value="1">Option 1</option>
+              <option value="2">Option 2</option>
+              <option value="3">Option 3</option>
+            </relic-select>
+          </div>
+          <pre class="code-snippet"><code>&lt;relic-select disabled&gt;...&lt;/relic-select&gt;
+&lt;relic-select invalid aria-invalid="true"&gt;...&lt;/relic-select&gt;
+&lt;relic-select multiple&gt;...&lt;/relic-select&gt;</code></pre>
+        </div>
+
+        <div class="props-section">
+          <h3>Props</h3>
+          <table class="props-table">
+            <thead>
+              <tr>
+                <th>Prop</th>
+                <th>Type</th>
+                <th>Default</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (row of selectProps; track row.name) {
+                <tr>
+                  <td>
+                    <code>{{ row.name }}</code>
+                  </td>
+                  <td>
+                    <code>{{ row.type }}</code>
+                  </td>
+                  <td>
+                    <code>{{ row.default }}</code>
+                  </td>
+                  <td>{{ row.description }}</td>
+                </tr>
+              }
+            </tbody>
+          </table>
         </div>
       </div>
     }
